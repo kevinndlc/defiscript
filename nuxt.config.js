@@ -9,26 +9,26 @@ export default {
   head: {
     title: 'DefiScript',
     htmlAttrs: {
-      lang: 'en'
+      lang: 'en',
     },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Automate your miner\'s work' },
-      { name: 'format-detection', content: 'telephone=no' }
+      {
+        hid: 'description',
+        name: 'description',
+        content: "Automate your miner's work",
+      },
+      { name: 'format-detection', content: 'telephone=no' },
     ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-    ]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [
-  ],
+  css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [
-  ],
+  plugins: [],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -40,7 +40,7 @@ export default {
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
     // https://google-analytics.nuxtjs.org/setup
-    '@nuxtjs/google-analytics'
+    '@nuxtjs/google-analytics',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -48,20 +48,20 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     // https://maronato.github.io/vue-toastification/
-    "vue-toastification/nuxt",
+    'vue-toastification/nuxt',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},
 
   // Google Analytics module configuration: https://google-analytics.nuxtjs.org/setup
-  // googleAnalytics: {
-  //   id: 'UA-213348320-1'
-  // },
+  googleAnalytics: {
+    id: 'G-JQEVWFVD6B'
+  },
 
   // Vue Toastification module configuration https://github.com/Maronato/vue-toastification
   toast: {
-    position: "top-center",
+    position: 'top-center',
     timeout: 5000,
     closeOnClick: true,
     pauseOnFocusLoss: false,
@@ -70,12 +70,11 @@ export default {
     draggablePercent: 0.6,
     showCloseButtonOnHover: true,
     hideProgressBar: false,
-    closeButton: "button",
+    closeButton: 'button',
     icon: true,
-    rtl: false
+    rtl: false,
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {
-  }
+  build: {},
 }
