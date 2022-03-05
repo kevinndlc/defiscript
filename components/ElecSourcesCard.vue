@@ -129,32 +129,34 @@ export default {
       } else {
         this.claiming = true
         await Promise.all(this.userElecSources.map(async (elecSource) => {
-          try {
-            await this.wax.api.transact({
-            actions: [{
-              account: 'defiminingio',
-              name: 'repairelec',
-              authorization: [{
-                actor: this.wax.userAccount,
-                permission: 'active',
-              }],
-              data: {
-                to: this.wax.userAccount,
-                asset_id: elecSource.asset_id
-              },
-            }]},
-            {
-              blocksBehind: 3,
-              expireSeconds: 30
-            })
-          } catch (e) {
-            this.$toast.error({
-              component: CustomNotification,
-              props: {
-                title: 'Unexpected error',
-                message: e.message
-              }
-            })
+          if (elecSource.durability - elecSource.current_durability > 0) {
+            try {
+              await this.wax.api.transact({
+              actions: [{
+                account: 'defiminingio',
+                name: 'repairelec',
+                authorization: [{
+                  actor: this.wax.userAccount,
+                  permission: 'active',
+                }],
+                data: {
+                  to: this.wax.userAccount,
+                  asset_id: elecSource.asset_id
+                },
+              }]},
+              {
+                blocksBehind: 3,
+                expireSeconds: 30
+              })
+            } catch (e) {
+              this.$toast.error({
+                component: CustomNotification,
+                props: {
+                  title: 'Unexpected error',
+                  message: e.message
+                }
+              })
+            }
           }
         }))
 
