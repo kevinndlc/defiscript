@@ -25,6 +25,7 @@
               'cursor-pointer mb-2 h-44 object-cover',
             ]"
             :src="slide.img_url"
+            referrerpolicy="no-referrer"
           />
           <div
             v-if="slide.current_durability >= 0"
