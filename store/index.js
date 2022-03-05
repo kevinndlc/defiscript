@@ -195,7 +195,7 @@ const createStore = () => {
             (template) => template.template_id === rig.template_id
           )
           rig.name = rigConf.name
-          rig.img_url = 'https://mypinata.cloud/ipfs/' + rigConf.img
+          rig.img_url = 'https://ipfs.atomichub.io/ipfs/' + rigConf.img
           rig.rewards_token = rigConf.claim_type
         })
 
@@ -228,7 +228,7 @@ const createStore = () => {
           )
           elecSource.name = elecSourceConf.name
           elecSource.img_url =
-            'https://mypinata.cloud/ipfs/' + elecSourceConf.img
+            'https://ipfs.atomichub.io/ipfs/' + elecSourceConf.img
           elecSource.rewards_token = elecSourceConf.claim_type
         })
 
@@ -260,7 +260,8 @@ const createStore = () => {
             (template) => template.template_id === workshop.template_id
           )
           workshop.name = workshopConf.name
-          workshop.img_url = 'https://mypinata.cloud/ipfs/' + workshopConf.img
+          workshop.img_url =
+            'https://ipfs.atomichub.io/ipfs/' + workshopConf.img
           workshop.rewards_token = workshopConf.claim_type
         })
 
