@@ -1,8 +1,61 @@
-# farmerscript
+<span id="top"></span>
 
-## Build Setup
+# DefiScript
 
-```bash
+An online tool to automate various player actions in the DefiMining game (Play to Earn based on the WAX blockchain)
+
+## Table of contents
+
+- [Overview](#overview)
+  - [Presentation](#overview)
+  - [Built With](#built-with)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Build Setup](#build-setup)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
+
+
+<!-- ABOUT THE PROJECT -->
+## Overview
+
+[![DefiScript Screenshot][product-screenshot]](https://defiscript.qtradingtheory.com/)
+
+DefiMining is a play-to-earn game based on the WAX blockchain, where you have to mine tokens with virtual rigs, produce electricity and and create components, where each entity is an NFT.
+
+I created DefiScript in order to automate this whole process, so that everyone can enjoy the benefits of the game without spending all their time on it.
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+
+
+### Built With
+
+* [Nuxt.js](https://nuxtjs.org/)
+* [Vue.js](https://vuejs.org/)
+* [TailwindCSS](https://tailwindcss.com/)
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+
+
+<!-- GETTING STARTED -->
+## Getting Started
+
+To get a local copy up and running follow these simple example steps.
+
+### Prerequisites
+
+
+Yarn must be installed
+```sh
+npm install yarn -g
+```
+
+### Build Setup
+
+```sh
 # install dependencies
 $ yarn install
 
@@ -19,51 +72,45 @@ $ yarn generate
 
 For detailed explanation on how things work, check out the [documentation](https://nuxtjs.org).
 
-## Special Directories
-
-You can create the following extra directories, some of which have special behaviors. Only `pages` is required; you can delete them if you don't want to use their functionality.
-
-### `assets`
-
-The assets directory contains your uncompiled assets such as Stylus or Sass files, images, or fonts.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/assets).
-
-### `components`
-
-The components directory contains your Vue.js components. Components make up the different parts of your page and can be reused and imported into your pages, layouts and even other components.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/components).
-
-### `layouts`
-
-Layouts are a great help when you want to change the look and feel of your Nuxt app, whether you want to include a sidebar or have distinct layouts for mobile and desktop.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/layouts).
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 
-### `pages`
+<!-- CONTRIBUTING -->
+## Contributing
 
-This directory contains your application views and routes. Nuxt will read all the `*.vue` files inside this directory and setup Vue Router automatically.
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/get-started/routing).
+If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
+Don't forget to give the project a star! Thanks again!
 
-### `plugins`
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-The plugins directory contains JavaScript plugins that you want to run before instantiating the root Vue.js Application. This is the place to add Vue plugins and to inject functions or constants. Every time you need to use `Vue.use()`, you should create a file in `plugins/` and add its path to plugins in `nuxt.config.js`.
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/plugins).
 
-### `static`
 
-This directory contains your static files. Each file inside this directory is mapped to `/`.
+<!-- LICENSE -->
+## License
 
-Example: `/static/robots.txt` is mapped as `/robots.txt`.
+Distributed under the MIT License. See `LICENSE.txt` for more information.
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/static).
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-### `store`
 
-This directory contains your Vuex store files. Creating a file in this directory automatically activates Vuex.
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/store).
+<!-- CONTACT -->
+## Contact
+
+Kevin Nedellec - kevin@nedellec.eu
+
+Project Link: [https://github.com/kevinndlc/defiscript](https://github.com/kevinndlc/deficript)
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+
+<!-- MARKDOWN LINKS & IMAGES -->
+[product-screenshot]: ./img/screenshot.png
