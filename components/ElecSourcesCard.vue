@@ -41,6 +41,7 @@ export default {
     },
     sumElecSourcesDurability() {
       let sum = 0
+      
       this.userElecSources.forEach(elecSource => (sum += elecSource.durability - elecSource.current_durability))
 
       return sum
@@ -128,37 +129,35 @@ export default {
         })
       } else {
         this.claiming = true
-        await Promise.all(this.userElecSources.map(async (elecSource) => {
-          if (elecSource.durability - elecSource.current_durability > 0) {
-            try {
-              await this.wax.api.transact({
-              actions: [{
-                account: 'defiminingio',
-                name: 'repairelec',
-                authorization: [{
-                  actor: this.wax.userAccount,
-                  permission: 'active',
-                }],
-                data: {
-                  to: this.wax.userAccount,
-                  asset_id: elecSource.asset_id
-                },
-              }]},
-              {
-                blocksBehind: 3,
-                expireSeconds: 30
-              })
-            } catch (e) {
-              this.$toast.error({
-                component: CustomNotification,
-                props: {
-                  title: 'Unexpected error',
-                  message: e.message
-                }
-              })
+        try {
+          await this.wax.api.transact({
+          actions: [{
+            account: 'defiminingio',
+            name: 'repairall',
+            authorization: [{
+              actor: this.wax.userAccount,
+              permission: 'active',
+            }],
+            data: {
+              to: this.wax.userAccount,
+              rig_ids: [],
+              elecsource_ids: this.userElecSources.filter(elecSource => elecSource.durability - elecSource.current_durability > 0).map(elecSource => elecSource.asset_id),
+              workshop_ids: []
+            },
+          }]},
+          {
+            blocksBehind: 3,
+            expireSeconds: 30
+          })
+        } catch (e) {
+          this.$toast.error({
+            component: CustomNotification,
+            props: {
+              title: 'Unexpected error',
+              message: e.message
             }
-          }
-        }))
+          })
+        }
 
         this.$toast.success({
           component: CustomNotification,

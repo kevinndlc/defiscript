@@ -144,6 +144,16 @@ export default {
 
       return sum
     },
+    userElecSources() {
+      return this.$store.state.userElecSources
+    },
+    sumElecSourcesDurability() {
+      let sum = 0
+
+      this.userElecSources.forEach(elecSource => (sum += elecSource.durability - elecSource.current_durability))
+
+      return sum
+    },
 
     userDMT() {
       return this.$store.getters.userDMT
@@ -220,13 +230,6 @@ export default {
         await this.repairAllTools()
         this.repairing = false
       }
-    },
-    currentDetails() {
-      this.withdrawPercentage = 0
-      this.depositPercentage = 0
-      this.nbSeedsToPlant = 1
-      this.nbAssetsToBurn = 1
-      this.nbAssetsAutoBuy = 1
     }
   },
   mounted() {
@@ -305,14 +308,65 @@ export default {
       }
     },
 
-    repairAllTools() {
-      this.$toast.error({
-        component: CustomNotification,
-        props: {
-          title: 'Auto Repair',
-          message: `This functionality will be enabled later`
+    async repairAllTools() {
+      const priceInDMC = this.sumRigsDurability / 100 + this.sumElecSourcesDurability / 100
+
+      if (priceInDMC > this.userDMC) {
+        this.$toast.error({
+          component: CustomNotification,
+          props: {
+            title: 'Not enough DMC',
+            message: `You need ${priceInDMC} DMC to repair all your items`
+          }
+        })
+      } else {
+        this.claiming = true
+        try {
+          await this.wax.api.transact({
+          actions: [{
+            account: 'defiminingio',
+            name: 'repairall',
+            authorization: [{
+              actor: this.wax.userAccount,
+              permission: 'active',
+            }],
+            data: {
+              to: this.wax.userAccount,
+              rig_ids: this.userRigs.filter(rig => rig.durability - rig.current_durability > 0).map(rig => rig.asset_id),
+              elecsource_ids: this.userElecSources.filter(elecSource => elecSource.durability - elecSource.current_durability > 0).map(elecSource => elecSource.asset_id),
+              workshop_ids: []
+            },
+          }]},
+          {
+            blocksBehind: 3,
+            expireSeconds: 30
+          })
+        } catch (e) {
+          this.$toast.error({
+            component: CustomNotification,
+            props: {
+              title: 'Unexpected error',
+              message: e.message
+            }
+          })
         }
-      })
+
+        this.$toast.success({
+          component: CustomNotification,
+          props: {
+            title: 'Successfully repaired your items',
+            message: `Your items have all been repaired for a total cost of ${priceInDMC} DMC`
+          }
+        })
+
+        this.claiming = false
+
+        setTimeout(async () => {
+          await this.$store.dispatch('getUserRessources')
+          await this.$store.dispatch('getUserRigs')
+          await this.$store.dispatch('getUserElecSources')
+        }, 1500)
+      }
     },
 
     handleAutoRecover() {

@@ -128,37 +128,35 @@ export default {
         })
       } else {
         this.claiming = true
-        await Promise.all(this.userRigs.map(async (rig) => {
-          if (rig.durability - rig.current_durability > 0) {
-            try {
-              await this.wax.api.transact({
-              actions: [{
-                account: 'defiminingio',
-                name: 'repairrig',
-                authorization: [{
-                  actor: this.wax.userAccount,
-                  permission: 'active',
-                }],
-                data: {
-                  to: this.wax.userAccount,
-                  asset_id: rig.asset_id
-                },
-              }]},
-              {
-                blocksBehind: 3,
-                expireSeconds: 30
-              })
-            } catch (e) {
-              this.$toast.error({
-                component: CustomNotification,
-                props: {
-                  title: 'Unexpected error',
-                  message: e.message
-                }
-              })
+        try {
+          await this.wax.api.transact({
+          actions: [{
+            account: 'defiminingio',
+            name: 'repairall',
+            authorization: [{
+              actor: this.wax.userAccount,
+              permission: 'active',
+            }],
+            data: {
+              to: this.wax.userAccount,
+              rig_ids: this.userRigs.filter(rig => rig.durability - rig.current_durability > 0).map(rig => rig.asset_id),
+              elecsource_ids: [],
+              workshop_ids: []
+            },
+          }]},
+          {
+            blocksBehind: 3,
+            expireSeconds: 30
+          })
+        } catch (e) {
+          this.$toast.error({
+            component: CustomNotification,
+            props: {
+              title: 'Unexpected error',
+              message: e.message
             }
-          }
-        }))
+          })
+        }
 
         this.$toast.success({
           component: CustomNotification,
