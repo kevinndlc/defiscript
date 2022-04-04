@@ -5,7 +5,6 @@
         <h2 class="text-gray-200 text-xl font-semibold">
           Workshop ({{ userWorkshops.length }})
         </h2>
-        <button v-if="sumWorkshopsDurability" class="ml-2 text-xs sm:text-sm text-primary hover:text-secondary font-bold" @click="repairAllWorkshops">REPAIR ALL</button>
       </div>
       <div>
         <MySwitch id="toggleWorkshops" label="Auto Claim" :checked="autoClaimWorkshops" @toggleSwitch="handleAutoClaimWorkshops"/>
@@ -110,10 +109,6 @@ export default {
         this.$store.dispatch('getUserWorkshops')
       }, 1500)
     },
-
-    repairAllWorkshops() {
-      console.log('DONE');
-    }
   }
 }
 </script>
