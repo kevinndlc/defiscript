@@ -146,7 +146,7 @@ const createStore = () => {
         )
 
         const ressources = data.rows[0]
-        ressources.max_energy = 500000
+        ressources.max_energy = 1000000
 
         commit('setUserRessources', ressources)
       },
